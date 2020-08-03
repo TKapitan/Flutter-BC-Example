@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:tka_demo/page/home/home_page.dart';
+import 'package:tka_demo/programability/menu_configuration.dart';
 
 void main() {
   runApp(MyApp());
@@ -14,7 +14,8 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.blue,
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
-      home: MyHomePage(title: 'Flutter Demo Home Page'),
+      routes: RouteConfiguration.routes,
+      initialRoute: RouteConfiguration.home,
     );
   }
 }
