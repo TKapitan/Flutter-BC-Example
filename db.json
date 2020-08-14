@@ -1,0 +1,113 @@
+[
+    {
+        "businessCentralEntities": 
+        [
+            {
+                "customers": 
+                [
+                    {
+                        "no": "CUST-00001",
+                        "name": "Czech Republic a.s.",
+                        "salesPerson": "TKA"
+                    },
+                    {
+                        "no": "CUST-00002",
+                        "name": "Germany a.s.",
+                        "salesPerson": "PET"
+                    },
+                    {
+                        "no": "CC-01",
+                        "name": "Europe a.s.",
+                        "salesPerson": "TKA"
+                    }
+                ]
+            },
+            {
+                "salesOrders":
+                [
+                    {
+                        "documentType": "Order",
+                        "no": "SO-20200001",
+                        "sellToCustomerNo": "CUST-00001",
+                        "sellToName": "Czech Republic a.s.",
+                        "salesOrderLines":
+                        [
+                            {
+                                "documentType": "Order",
+                                "documentNo": "SO-20200001",
+                                "lineNo": 10000,
+                                "type": 1,
+                                "no": "ITEM-0002",
+                                "description": "Microsoft Windows 10 BLABLA",
+                                "quantity": 1.5,
+                                "unitOfMeasure": "PCS"
+                            },
+                            {
+                                "documentType": "Order",
+                                "documentNo": "SO-20200001",
+                                "lineNo": 20000,
+                                "type": 1,
+                                "no": "ITEM-0001",
+                                "description": "Installation support",
+                                "quantity": 1.5,
+                                "unitOfMeasure": "HOURS"
+                            },
+                            {
+                                "documentType": "Order",
+                                "documentNo": "SO-20200001",
+                                "lineNo": 30000,
+                                "type": 0,
+                                "description": "Delivery Time - 17:00"
+                            }
+                        ]
+                    },
+                    {
+                        "documentType": "Order",
+                        "no": "SO-20200005",
+                        "sellToCustomerNo": "CUST-00002",
+                        "sellToName": "Czech Republic a.s.",
+                        "salesOrderLines":
+                        [
+                            {
+                                "documentType": "Order",
+                                "documentNo": "SO-20200005",
+                                "lineNo": 10000,
+                                "type": 1,
+                                "no": "ITEM-0002",
+                                "description": "Microsoft Windows 10 BLABLA",
+                                "quantity": 5,
+                                "unitOfMeasure": "PCS"
+                            }
+                        ]
+                    },
+                    {
+                        "documentType": "Order",
+                        "no": "SO-20200010",
+                        "sellToCustomerNo": "CUST-00002",
+                        "sellToName": "Germany a.s.",
+                        "salesOrderLines":
+                        [
+                            {
+                                "documentType": "Order",
+                                "documentNo": "SO-20200010",
+                                "lineNo": 10000,
+                                "type": 1,
+                                "no": "ITEM-0002",
+                                "description": "Microsoft Windows 10 BLABLA",
+                                "quantity": 1.5,
+                                "unitOfMeasure": "PCS"
+                            },
+                            {
+                                "documentType": "Order",
+                                "documentNo": "SO-20200010",
+                                "lineNo": 20000,
+                                "type": 0,
+                                "description": "Online Delivery without Installation"
+                            }
+                        ]
+                    }
+                ]
+            }
+        ]
+    }
+]
