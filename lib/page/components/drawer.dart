@@ -6,7 +6,7 @@ class AppDrawer extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    Iterable<ListTile> menuItems = SessionManager().listMenuItems(context);
+    Iterable<ListTile> menuItems = SessionManager(context).listMenuItems();
     return Drawer(
       child: Column(
         children: <Widget>[

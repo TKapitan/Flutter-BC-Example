@@ -2,15 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:tka_demo/programability/menu_configuration.dart';
 
 class SessionManager {
-  static final SessionManager _singleton = SessionManager._singletonConst();
+  static SessionManager _singleton;
+  static final List<ListTile> _resultMenu = [];
 
-  SessionManager._singletonConst();
-  factory SessionManager() {
-    return _singleton;
-  }
-
-  Iterable<ListTile> listMenuItems(BuildContext context) {
-    List<ListTile> _resultMenu = [];
+  SessionManager._internal(BuildContext context) {
     MenuConfiguration.menuPages.forEach(
       (key, value) => _resultMenu.add(ListTile(
         leading: Icon(value.icon),
@@ -18,6 +13,16 @@ class SessionManager {
         onTap: () => Navigator.pushNamed(context, value.routeName),
       )),
     );
+  }
+
+  factory SessionManager(BuildContext context) {
+    if (_singleton == null) {
+      _singleton = new SessionManager._internal(context);
+    }
+    return _singleton;
+  }
+
+  Iterable<ListTile> listMenuItems() {
     return _resultMenu;
   }
 }
