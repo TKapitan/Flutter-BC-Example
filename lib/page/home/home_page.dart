@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:tka_demo/page/components/drawer.dart';
+import 'package:tka_demo/programability/rest_api.dart';
 
 class HomePage extends StatefulWidget {
   static const String routeName = '/homePage';
@@ -11,11 +12,18 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
   int _counter = 0;
+  Future<RESTTestData> futureRESTTestData;
 
   void _incrementCounter() {
     setState(() {
       _counter++;
     });
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    futureRESTTestData = fetchRESTTestData();
   }
 
   @override
@@ -35,6 +43,17 @@ class _HomePageState extends State<HomePage> {
             Text(
               '$_counter',
               style: Theme.of(context).textTheme.headline4,
+            ),
+            FutureBuilder<RESTTestData>(
+              future: futureRESTTestData,
+              builder: (context, snapshot) {
+                if (snapshot.hasData) {
+                  return Text("Data from REST: " + snapshot.data.email);
+                } else if (snapshot.hasError) {
+                  return Text("${snapshot.error}");
+                }
+                return CircularProgressIndicator();
+              },
             ),
           ],
         ),
