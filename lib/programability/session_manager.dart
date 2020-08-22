@@ -3,6 +3,7 @@ import 'package:tka_demo/programability/menu_configuration.dart';
 
 class SessionManager {
   static SessionManager _singleton;
+  static final String defaultApiURL = 'https://jsonplaceholder.typicode.com/';
   static final List<ListTile> _resultMenu = [];
 
   SessionManager._internal(BuildContext context) {

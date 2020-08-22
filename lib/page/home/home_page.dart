@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:tka_demo/page/components/drawer.dart';
-import 'package:tka_demo/programability/rest_api.dart';
+import 'package:tka_demo/programability/rest/rest_manager.dart';
+import 'package:tka_demo/page/rest_test/rest_test_data.dart';
 
 class HomePage extends StatefulWidget {
   static const String routeName = '/homePage';
@@ -23,7 +24,7 @@ class _HomePageState extends State<HomePage> {
   @override
   void initState() {
     super.initState();
-    futureRESTTestData = fetchRESTTestData();
+    futureRESTTestData = RestManager.fetch(RESTTestData());
   }
 
   @override
