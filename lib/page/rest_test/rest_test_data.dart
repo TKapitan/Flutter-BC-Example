@@ -5,7 +5,10 @@ class RESTTestData extends RestData {
   int postId, id;
   String name, email, body;
 
-  RESTTestData() : super(apiName);
+  RESTTestData()
+      : super(
+          pApiName: apiName,
+        );
 
   @override
   RESTTestData fromJson(Map<String, dynamic> json) {

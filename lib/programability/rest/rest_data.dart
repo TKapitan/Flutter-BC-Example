@@ -1,16 +1,24 @@
+import 'package:flutter/material.dart';
+
 import '../session_manager.dart';
 
 abstract class RestData {
-  final String _fullApiUrl;
-  String _apiURL = SessionManager.defaultApiURL;
+  String _fullApiName;
+  String _apiURL;
 
-  RestData(
-    this._fullApiUrl, [
-    this._apiURL,
-  ]);
+  RestData({
+    @required String pApiName,
+    String pApiUrl,
+  }) {
+    this._fullApiName = pApiName;
+    this._apiURL = SessionManager.defaultApiURL;
+    if (pApiUrl != null && pApiUrl != '') {
+      this._apiURL = pApiUrl;
+    }
+  }
 
   String fullApiURL() {
-    return this._apiURL + this._fullApiUrl;
+    return this._apiURL + this._fullApiName;
   }
 
   RestData fromJson(Map<String, dynamic> json) {
