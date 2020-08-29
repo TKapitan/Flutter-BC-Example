@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:tka_demo/page/components/drawer.dart';
 import 'package:tka_demo/programability/rest/rest_data.dart';
 import 'package:tka_demo/programability/rest/rest_manager.dart';
-import 'package:tka_demo/page/rest_test/rest_test_data.dart';
+import 'package:tka_demo/model/rest_test_data.dart';
 
 class HomePage extends StatefulWidget {
   static const String routeName = '/homePage';
