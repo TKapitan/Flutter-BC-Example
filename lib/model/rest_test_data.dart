@@ -1,7 +1,8 @@
+import 'package:tka_demo/page/components/list_item.dart';
 import 'package:tka_demo/programability/rest/rest_data.dart';
 
 class RESTTestData extends RestData {
-  static const String apiName = 'comments/1';
+  static const String apiName = 'comments';
   int postId, id;
   String name, email, body;
 
@@ -19,5 +20,18 @@ class RESTTestData extends RestData {
     this.body = json['body'];
 
     return this;
+  }
+
+  @override
+  ListItem asListItem() {
+    return ListItem(
+      title: '#' + this.postId.toString() + ' (' + this.email + ')',
+      subtitle: this.body,
+    );
+  }
+
+  @override
+  RESTTestData clone() {
+    return RESTTestData();
   }
 }

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:tka_demo/page/components/list_item.dart';
 
 import '../session_manager.dart';
 
@@ -21,7 +22,9 @@ abstract class RestData {
     return this._apiURL + this._fullApiName;
   }
 
-  RestData fromJson(Map<String, dynamic> json) {
-    throw UnimplementedError();
-  }
+  RestData fromJson(Map<String, dynamic> json);
+
+  ListItem asListItem();
+
+  RestData clone();
 }
