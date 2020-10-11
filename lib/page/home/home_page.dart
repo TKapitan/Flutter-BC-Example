@@ -25,7 +25,9 @@ class _HomePageState extends State<HomePage> {
   @override
   void initState() {
     super.initState();
-    futureRestData = RestManager.fetch(RESTTestData());
+    futureRestData = RestManager.fetch(
+      sourceRestData: RESTTestData(),
+    );
   }
 
   @override

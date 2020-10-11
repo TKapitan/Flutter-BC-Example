@@ -5,6 +5,11 @@ abstract class LookupItemEvent extends Equatable {
   const LookupItemEvent();
 }
 
+class LookupItemLoaded extends LookupItemEvent {
+  @override
+  List<Object> get props => [];
+}
+
 class LookupItemSearchFieldFilled extends LookupItemEvent {
   final String itemToFind;
 
