@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:tka_demo/programability/menu_configuration.dart';
+import 'package:tka_demo/security.dart';
 
 class SessionManager {
   static SessionManager _singleton;
-  static final String defaultApiURL = 'https://jsonplaceholder.typicode.com/';
+  static final String defaultApiURL = BC_API_URL;
   static final List<ListTile> _resultMenu = [];
 
   SessionManager._internal(BuildContext context) {

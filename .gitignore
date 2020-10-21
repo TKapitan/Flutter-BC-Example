@@ -1,3 +1,6 @@
+# Security file that store all sensitive information that should not be provided for demo users
+/lib/security.dart
+
 # Miscellaneous
 *.class
 *.log
