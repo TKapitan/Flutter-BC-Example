@@ -35,12 +35,10 @@ class _LookupItemState extends State<LookupItemPage> {
   String onSubmitItemIdentifier({
     @required String submittedValue,
   }) {
-    if (submittedValue.isNotEmpty) {
-      print('Item Identifier field submitted: ' + submittedValue);
-      _lookupItemBloc.add(LookupItemSearchFieldFilled(
-        itemToFind: submittedValue,
-      ));
-    }
+    print('Item Identifier field submitted: ' + submittedValue);
+    _lookupItemBloc.add(LookupItemSearchFieldFilled(
+      itemToFind: submittedValue,
+    ));
     return null;
   }
 

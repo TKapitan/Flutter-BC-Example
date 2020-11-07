@@ -33,7 +33,7 @@ class RestManager {
   }) async {
     String filterString = '';
     if (filters != null) {
-      filterString = filters.toHttpFilterString();
+      filterString = filters.toODataFilterString();
     }
     final response = await http.get(
       sourceRestData.fullApiURL() + filterString,

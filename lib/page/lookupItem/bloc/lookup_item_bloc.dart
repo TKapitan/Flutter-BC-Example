@@ -22,13 +22,12 @@ class LookupItemBloc extends Bloc<LookupItemEvent, LookupItemState> {
       );
 
       RestFilters filters;
-      // if (event.itemToFind != '') {
-      //   filters = RestFilters()
-      //       .filter(
-      //         field: 'postId',
-      //         value: event.itemToFind,
-      //       )
-      // }
+      if (event.itemToFind != '') {
+        filters = RestFilters().filter(
+          field: 'number',
+          value: event.itemToFind,
+        );
+      }
 
       List<RestData> testData = await RestManager.fetchMultiple(
         sourceRestData: ItemModel(),
