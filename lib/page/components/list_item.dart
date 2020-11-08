@@ -3,11 +3,13 @@ import 'package:flutter_slidable/flutter_slidable.dart';
 
 class ListItem extends StatelessWidget {
   final String title, subtitle;
+  final Color itemColor;
   final List<Widget> actions, secondaryActions;
 
   ListItem({
     @required this.title,
     @required this.subtitle,
+    this.itemColor = Colors.white,
     this.actions,
     this.secondaryActions,
   });
@@ -21,14 +23,19 @@ class ListItem extends StatelessWidget {
       child: Container(
         color: Colors.white,
         child: Card(
-          child: ListTile(
-            title: Text(
-              this.title,
-              style: TextStyle(
-                fontWeight: FontWeight.bold,
-              ),
+          child: Container(
+            decoration: BoxDecoration(
+              color: this.itemColor,
             ),
-            subtitle: Text(this.subtitle),
+            child: ListTile(
+              title: Text(
+                this.title,
+                style: TextStyle(
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+              subtitle: Text(this.subtitle),
+            ),
           ),
         ),
       ),
