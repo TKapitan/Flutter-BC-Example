@@ -52,8 +52,8 @@ class _LookupItemState extends State<LookupItemPage> {
         child: BlocBuilder<LookupItemBloc, LookupItemState>(
           bloc: _lookupItemBloc,
           condition: (previous, current) {
-            if (previous is LookupItemStateLoading &&
-                current is LookupItemStateLoaded) return true;
+            if (current is LookupItemStateBlockedChanged) return true;
+            if (current is LookupItemStateLoaded) return true;
             return false;
           },
           builder: (context, state) {

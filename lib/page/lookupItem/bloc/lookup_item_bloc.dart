@@ -7,6 +7,8 @@ import 'package:tka_demo/programability/rest/rest_filter.dart';
 import 'package:tka_demo/programability/rest/rest_manager.dart';
 
 class LookupItemBloc extends Bloc<LookupItemEvent, LookupItemState> {
+  LookupItemStateLoaded lastLoadedState;
+
   @override
   get initialState => LookupItemStateLoaded(
         itemToFind: '',
@@ -30,13 +32,45 @@ class LookupItemBloc extends Bloc<LookupItemEvent, LookupItemState> {
       }
 
       List<RestData> testData = await RestManager.fetchMultiple(
-        sourceRestData: ItemModel(),
+        sourceRestData: ItemModel(
+          fromBloc: this,
+        ),
         filters: filters,
       );
-      yield LookupItemStateLoaded(
+      yield lastLoadedState = LookupItemStateLoaded(
         itemToFind: state.itemToFind,
         noOfRecordsToShow: testData.length,
         dataEntities: testData,
+      );
+    } else if (event is LookupItemBlockItemPushed) {
+      await RestManager.update(
+        sourceRestData: event.onItem,
+        newValues: <String, String>{
+          'blocked': 'true',
+        },
+        recordIdentification:
+            event.onItem.asKeyFieldsODataRecordIdentificationString(),
+      );
+      event.onItem.blocked = true;
+      yield LookupItemStateBlockedChanged(
+        itemNo: event.onItem.number,
+        newValue: event.onItem.blocked,
+        lastLoadedState: lastLoadedState,
+      );
+    } else if (event is LookupItemUnBlockItemPushed) {
+      await RestManager.update(
+        sourceRestData: event.onItem,
+        newValues: <String, String>{
+          'blocked': 'false',
+        },
+        recordIdentification:
+            event.onItem.asKeyFieldsODataRecordIdentificationString(),
+      );
+      event.onItem.blocked = false;
+      yield LookupItemStateBlockedChanged(
+        itemNo: event.onItem.number,
+        newValue: event.onItem.blocked,
+        lastLoadedState: lastLoadedState,
       );
     }
   }
