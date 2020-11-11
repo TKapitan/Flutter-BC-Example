@@ -43,35 +43,35 @@ class LookupItemBloc extends Bloc<LookupItemEvent, LookupItemState> {
         dataEntities: testData,
       );
     } else if (event is LookupItemBlockItemPushed) {
-      await RestManager.update(
-        sourceRestData: event.onItem,
-        newValues: <String, String>{
-          'blocked': 'true',
-        },
-        recordIdentification:
-            event.onItem.asKeyFieldsODataRecordIdentificationString(),
-      );
-      event.onItem.blocked = true;
-      yield LookupItemStateBlockedChanged(
-        itemNo: event.onItem.number,
-        newValue: event.onItem.blocked,
-        lastLoadedState: lastLoadedState,
+      yield* _itemBlockedChanged(
+        itemModel: event.onItem,
+        toValue: true,
       );
     } else if (event is LookupItemUnBlockItemPushed) {
-      await RestManager.update(
-        sourceRestData: event.onItem,
-        newValues: <String, String>{
-          'blocked': 'false',
-        },
-        recordIdentification:
-            event.onItem.asKeyFieldsODataRecordIdentificationString(),
-      );
-      event.onItem.blocked = false;
-      yield LookupItemStateBlockedChanged(
-        itemNo: event.onItem.number,
-        newValue: event.onItem.blocked,
-        lastLoadedState: lastLoadedState,
+      yield* _itemBlockedChanged(
+        itemModel: event.onItem,
+        toValue: false,
       );
     }
+  }
+
+  Stream<LookupItemState> _itemBlockedChanged({
+    ItemModel itemModel,
+    bool toValue,
+  }) async* {
+    await RestManager.update(
+      sourceRestData: itemModel,
+      newValues: <String, String>{
+        'blocked': toValue.toString(),
+      },
+      recordIdentification:
+          itemModel.asKeyFieldsODataRecordIdentificationString(),
+    );
+    itemModel.blocked = toValue;
+    yield LookupItemStateBlockedChanged(
+      itemNo: itemModel.number,
+      newValue: itemModel.blocked,
+      lastLoadedState: lastLoadedState,
+    );
   }
 }
